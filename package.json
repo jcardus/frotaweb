@@ -26,6 +26,8 @@
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
-		"@sveltejs/adapter-static": "^3.0.6"
+		"@sveltejs/adapter-static": "^3.0.6",
+		"@unovis/svelte": "^1.4.4",
+		"@unovis/ts": "^1.4.4"
 	}
 }
