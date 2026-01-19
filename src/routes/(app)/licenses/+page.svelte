@@ -1,21 +1,19 @@
 <script>
     import {onMount} from "svelte";
-    import { createEmbeddingContext } from 'amazon-quicksight-embedding-sdk';
     const {data} = $props()
+    let token=$state('')
     onMount(async () => {
-        const frameOptions = {
-            url: await fetch('/quicksight').then(r => r.text()),
-            container: '#quicksight',
-            resizeHeightOnSizeChangedEvent: true,
-        }
         console.log(data.session.id)
-        const contentOptions = {
-            parameters: [{Name: 'userId', Values: [data.session && data.session.id]}],
-            locale: navigator.language,
-        }
-        const embeddingContext = await createEmbeddingContext()
-        console.log(await embeddingContext.embedDashboard(frameOptions, contentOptions))
+        token = await fetch('/api/session/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'expiration=2026-01-26T00%3A00%3A00.000Z'
+        }).then(res => res.text())
     })
 </script>
-<div id="quicksight" class="h-full"></div>
+<iframe src="https://licenses.lovable.app?token={token}" class="w-full h-screen border-0">
+</iframe>
+
 
