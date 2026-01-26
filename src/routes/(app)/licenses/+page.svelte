@@ -9,7 +9,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: 'expiration=2026-01-26T00%3A00%3A00.000Z'
+            body: `expiration=${new Date(Date.now() + 1000*60*60).toISOString()}`
         }).then(res => res.text())
     })
 </script>
